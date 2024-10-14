@@ -1,14 +1,32 @@
 name: Demo workflow
+
 on:
-  push
-  pull_request
-job:
-  build 1:
-  runs-on : ubuntu-latest
-  steps: 
-      -name: Checkout 
-      users: actions/checkout@v4
-      name: Print hello
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Your name'
+        required: true
+        default: 'World'
+      age:
+        description: 'Your age'
+        required: true
+        default: '30'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+     - name: Checkout 
+       uses: actions/checkout@v4
+     - name: Get the inputs from the user
+       run: |
+          echo "Hello, ${{ github.event.inputs.name }}!"
+          echo "You are ${{ github.event.inputs.age }} years old." 
+     - name: Run Python      
+       run: |
+        python demo.py
+      
+      
       
   
 
