@@ -1,7 +1,5 @@
 name: Demo workflow
 on:
-  push:
-  pull_request:
   workflow_dispatch:
     inputs:
       myInput:
@@ -15,7 +13,7 @@ jobs:
     - name: Checkout 
       uses: actions/checkout@v4
     - name: Get the inputs from the user
-      run : echo "${myInput}"
+      run : echo $myInput
     - name: Run Python      
       run: |
         python demo.py
