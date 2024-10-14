@@ -1,14 +1,23 @@
 name: Demo workflow
 on:
-  push
-  pull_request
-job:
-  build 1:
+  push:
+  pull_request:
+jobs:
+ build:
   runs-on : ubuntu-latest
   steps: 
-      -name: Checkout 
-      users: actions/checkout@v4
-      name: Print hello
+    - name: Checkout 
+      uses: actions/checkout@v4
+    - name: Print hello      
+      env:
+          MY_VAR: Hi there! My name is
+          FIRST_NAME: Mona
+          MIDDLE_NAME: The
+          LAST_NAME: Octocat
+      run: |
+          echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
+      
+      
       
   
 
