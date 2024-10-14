@@ -3,8 +3,6 @@ on:
   workflow_dispatch:
     inputs:
       myInput:
-        default: "my input value"
-
 
 jobs:
  build:
@@ -13,7 +11,7 @@ jobs:
     - name: Checkout 
       uses: actions/checkout@v4
     - name: Get the inputs from the user
-      run : echo $myInput
+      run : echo "${{ toJSON(github.event.inputs) }}"
     - name: Run Python      
       run: |
         python demo.py
